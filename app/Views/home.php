@@ -8,7 +8,7 @@
             <h3>Cash book</h3>
         </div>
         <div class="col text-right p-3">
-            <a href="<?= site_url('main/newMoviment') ?>" class="btn btn-primary">Add moviment</a>
+            <a href="<?= site_url('public/main/newMoviment') ?>" class="btn btn-primary">Add moviment</a>
         </div>
     </div>
 </div>
