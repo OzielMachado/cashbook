@@ -10,6 +10,6 @@ class Home extends BaseController
     public function index()
     {
         $auth = new Auth();
-        return $auth->get();
+        return $auth->getIndex();
     }
 }

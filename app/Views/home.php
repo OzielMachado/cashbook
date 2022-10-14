@@ -1,6 +1,6 @@
 <?= $this->extend('layouts/main_layout') ?>
 
-<?= $this->section('conteudo') ?>
+<?= $this->section('moviments') ?>
 
 <div class="container">
     <div class="row">
@@ -8,7 +8,7 @@
             <h3>Cash book</h3>
         </div>
         <div class="col text-right p-3">
-            <a href="<?= site_url('public/main/newMoviment') ?>" class="btn btn-primary">Add moviment</a>
+            <a href="<?= site_url('main/newMoviment') ?>" class="btn btn-primary">Add</a>
         </div>
     </div>
 </div>

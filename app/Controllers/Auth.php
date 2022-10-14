@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 
 use App\Libraries\Hash;
 use App\Models\UserModel;
+use PHPUnit\Framework\MockObject\Exception;
 
 class Auth extends BaseController
 {
@@ -19,7 +20,7 @@ class Auth extends BaseController
     /**
      * Responsible for login page view.
      */
-    public function get()
+    public function getIndex()
     {
         return view('auth/login');
     }
@@ -152,7 +153,7 @@ class Auth extends BaseController
             if(!$checkPassword)
             {
                 session()->setFlashdata('fail', 'Incorrect password provided');
-                return redirect()->to('public/auth');
+                return redirect()->to('auth');
             }
             else
             {
@@ -161,9 +162,21 @@ class Auth extends BaseController
                 $userId = $userInfo['id'];
 
                 session()->set('loggedInUser', $userId);
-                return redirect()->to('public/main/index');
+                return redirect()->to('/dashboard');
             }
         }
+    }
 
+    /**
+     * Log out the user.
+     */
+    public function getLogout(){
+        
+        if(session()->has('loggedInUser')){
+            session()->remove('loggedInUser');
+        }
+
+        return redirect()->to('auth?access=loggedout')->with('fail', 
+        'You are logged out');
     }
 }
