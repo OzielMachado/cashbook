@@ -12,4 +12,8 @@ class Home extends BaseController
         $auth = new Auth();
         return $auth->getIndex();
     }
+
+    public function getSecond(){
+        echo 'second here...';
+    }
 }

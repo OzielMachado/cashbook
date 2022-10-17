@@ -40,17 +40,8 @@
   </div>
 </nav>
 
-    <?= $this->renderSection('dashboard') ?>
+    <?= $this->renderSection('form') ?>
 
-    <hr>
-    <footer class="container">
-        <div class="row">
-            <div class="col text-center">
-                Cash book &copy; <?= date('Y') ?>
-            </div>
-        </div>
-    </footer>
-    
     <script src="<?= base_url('public/assets/bootstrap.bundle.min.css') ?>"></script>
 </body>
 </html>

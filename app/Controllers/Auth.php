@@ -162,7 +162,7 @@ class Auth extends BaseController
                 $userId = $userInfo['id'];
 
                 session()->set('loggedInUser', $userId);
-                return redirect()->to('/dashboard');
+                return redirect()->to('dashboard');
             }
         }
     }

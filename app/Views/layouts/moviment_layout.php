@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="<?= base_url('dashboard') ?>/">Home</a>
+          <a class="nav-link" aria-current="page" href="<?= base_url('dashboard') ?>/">Home</a>
         </li>
         <li class="nav-item"> 
           <a class="nav-link" href="<?=base_url('moviment') ?>">Moviment</a>
@@ -40,7 +40,7 @@
   </div>
 </nav>
 
-    <?= $this->renderSection('dashboard') ?>
+    <?= $this->renderSection('table') ?>
 
     <hr>
     <footer class="container">
