@@ -72,29 +72,4 @@ class Moviment extends BaseController
         return $this->response->redirect(site_url('moviment'));
     }
 
-    public function getGeneratePdf()
-    {
-
-        $userModel = new UserModel();
-        $loggedInUserId = session()->get('loggedInUser');
-        $userInfo = $userModel->find($loggedInUserId);
-
-
-        $dados = [
-            'userInfo' => $userInfo,
-            'moviments' => $this->movimentModel->findAll(),
-        ];
-
-        $dompdf = new \Dompdf\Dompdf();
-
-        $dompdf->loadHtml(view('relatorio/index', $dados));
-
-        $dompdf->setPaper('A4','portrait');
-
-        $dompdf->render();
-
-        $dompdf->stream("Moviment List");
-
-    }
-
 }

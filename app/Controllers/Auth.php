@@ -176,7 +176,7 @@ class Auth extends BaseController
             session()->remove('loggedInUser');
         }
 
-        return redirect()->to('?access=loggedout')->with('fail', 
+        return redirect()->to('login?access=loggedout')->with('fail', 
         'You are logged out');
     }
 }

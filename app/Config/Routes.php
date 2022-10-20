@@ -37,13 +37,15 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 
 
-$routes->get('/', 'Auth::index');
+$routes->get('auth', 'Auth::index');
+$routes->get('login', 'Auth::index');
 $routes->post('loginUser', 'Auth::loginUser');
 $routes->post('registerUser', 'Auth::registerUser');
 
 // Logged in user routes.
 
 $routes->group('', ['filter' => 'AuthCheck'], function($routes){
+    $routes->get('/', 'Dashboard::index');
     $routes->get('logout', 'Auth::logout');
     $routes->get('dashboard', 'Dashboard::index');
     $routes->get('moviment', 'Moviment::index');
