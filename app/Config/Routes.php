@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -25,7 +25,7 @@ $routes->set404Override();
 // where controller filters or CSRF protection are bypassed.
 // If you don't want to define all routes, please use the Auto Routing (Improved).
 // Set `$autoRoutesImproved` to true in `app/Config/Feature.php` and set the following to true.
-$routes->setAutoRoute(true);
+// $routes->setAutoRoute(true);
 
 /*
  * --------------------------------------------------------------------
@@ -37,15 +37,22 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 
+$routes->get('/', 'Auth::index');
+$routes->post('loginUser', 'Auth::loginUser');
+$routes->post('registerUser', 'Auth::registerUser');
 
 // Logged in user routes.
 
 $routes->group('', ['filter' => 'AuthCheck'], function($routes){
-    $routes->get('/', 'Home::index');
-    $routes->get('/dashboard', 'Dashboard::getIndex');
-    $routes->get('/moviment', 'Moviment::getIndex');
-    $routes->get('/moviment/generatepdf', 'Moviment::getGeneratePdf');
+    $routes->get('logout', 'Auth::logout');
+    $routes->get('dashboard', 'Dashboard::index');
+    $routes->get('moviment', 'Moviment::index');
+    $routes->get('form', 'Moviment::create');
+    $routes->get('form', 'Moviment::create');
+    $routes->post('store', 'Moviment::store');
+    
 
+    
 });
 
 /*

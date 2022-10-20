@@ -7,7 +7,7 @@ use App\Models\UserModel;
 
 class Dashboard extends BaseController
 {
-    public function getIndex()
+    public function index()
     {
 
         $userModel = new UserModel();

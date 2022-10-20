@@ -49,6 +49,6 @@
         chart.draw(data, options);
       }
     </script>
-    <div id="curve_chart" style="width:90vwpx; height:60vh"></div>
+    <div id="curve_chart" style="width:90vw; height:80vh"></div>
 
 <?= $this->endSection() ?>

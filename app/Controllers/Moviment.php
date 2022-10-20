@@ -15,21 +15,22 @@ class Moviment extends BaseController
     {
         $this->movimentModel = new MovimentModel();
     }
-    public function getIndex()
+
+    
+
+    public function index()
     {
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
-
-        $data = [
+        $dados = [
             'title' => 'Moviments',
             'userInfo' => $userInfo,
-            'moviments' => $this->movimentModel->paginate(10),
-            'pager' =>$this->movimentModel->pager
-
+            'moviments' => $this->movimentModel->orderBy('id', 'DESC')->findAll()
         ];
 
-        return view('moviments/index', $data);
+
+        return view('moviments/index', $dados);
     }
 
     public function getDelete($id) {
@@ -42,21 +43,21 @@ class Moviment extends BaseController
         }
     }
 
-    public function getCreate() {
+    public function create() {
         $userModel = new UserModel();
         $loggedInUserId = session()->get('loggedInUser');
         $userInfo = $userModel->find($loggedInUserId);
 
-        $data = [
+        $dados = [
             'title' => 'New moviment',
             'userInfo' => $userInfo,
 
         ];
 
-        return view('moviments/form', $data);
+        return view('moviments/form', $dados);
     }
 
-    public function postStore(){
+    public function store(){
         $params = [
             'description' => $this->request->getPost('description'),
             'value' => $this->request->getPost('value'),
@@ -68,9 +69,7 @@ class Moviment extends BaseController
         $db->query("INSERT INTO moviment VALUES (DEFAULT, :description:, NOW(), :value:, :type:, :user_id:)", $params);
         $db->close();
 
-        return view('messages', [
-            'message' => 'Movimento salvo com sucesso'
-        ]);
+        return $this->response->redirect(site_url('moviment'));
     }
 
     public function getGeneratePdf()
@@ -81,14 +80,14 @@ class Moviment extends BaseController
         $userInfo = $userModel->find($loggedInUserId);
 
 
-        $data = [
+        $dados = [
             'userInfo' => $userInfo,
             'moviments' => $this->movimentModel->findAll(),
         ];
 
         $dompdf = new \Dompdf\Dompdf();
 
-        $dompdf->loadHtml(view('relatorio/index', $data));
+        $dompdf->loadHtml(view('relatorio/index', $dados));
 
         $dompdf->setPaper('A4','portrait');
 

@@ -20,7 +20,7 @@ class Auth extends BaseController
     /**
      * Responsible for login page view.
      */
-    public function getIndex()
+    public function index()
     {
         return view('auth/login');
     }
@@ -28,14 +28,14 @@ class Auth extends BaseController
     /**
      * Responsible for register page view.
      */
-    public function getRegister(){
+    public function register(){
         return view('auth/register');
     }
 
     /**
      * Save new user to database
      */
-    public function postRegisterUser(){
+    public function registerUser(){
         // Validate user input.
 
         // $validated = $this->validate([
@@ -113,7 +113,7 @@ class Auth extends BaseController
     /**
      * User login method
      */
-    public function postLoginUser(){
+    public function loginUser(){
 
         // Validating user input.
 
@@ -170,13 +170,13 @@ class Auth extends BaseController
     /**
      * Log out the user.
      */
-    public function getLogout(){
+    public function logout(){
         
         if(session()->has('loggedInUser')){
             session()->remove('loggedInUser');
         }
 
-        return redirect()->to('auth?access=loggedout')->with('fail', 
+        return redirect()->to('?access=loggedout')->with('fail', 
         'You are logged out');
     }
 }

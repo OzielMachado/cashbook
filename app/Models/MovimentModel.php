@@ -16,6 +16,7 @@ class MovimentModel extends Model
     protected $protectFields    = true;
     protected $allowedFields    = [
         'description',
+        'date',
         'value',
         'type'
     ];
